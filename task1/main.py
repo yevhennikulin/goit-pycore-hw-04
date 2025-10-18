@@ -15,14 +15,19 @@ def total_salary(file_path):
                 name, salary = line.strip().split(',')
                 total_wages += int(salary)
             # Calculate average wages
-            average = total_wages / len(lines)
+            average = int(total_wages / len(lines))
     except FileNotFoundError:
         # Handle file not found error
         return "The specified file was not found."
+    except IOError:
+        # Handle general I/O error
+        return "An error occurred while reading the file."
     except ValueError:
         # Handle value error in case of incorrect data format
         return "There was an error processing the file contents."
     return (total_wages, average)
 
+# Use the function to get total and average salary
 salary_tuple = total_salary(wages_file_path)
+print(salary_tuple)
 
